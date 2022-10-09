@@ -7,3 +7,32 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar {
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.3);
+  height: 40px;
+}
+
+#stage {
+  width: 100vw;
+  height: -webkit-fill-available;
+}
+
+#docker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;;
+  padding: 20px;
+}
