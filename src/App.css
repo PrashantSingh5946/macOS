@@ -4,3 +4,12 @@
   padding: 2rem;
   text-align: center;
 }
+
+
+body{
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  background-image: url("./assets/wallpaper.jpg");
+  background-size: cover;
+}
