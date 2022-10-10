@@ -7,15 +7,20 @@ type App = {
 };
 
 type DockerItemProps = {
-  url: string,
-  name: string,
+  url: string;
+  name: string;
 };
 
 const DockerItem: React.FunctionComponent<DockerItemProps> = (props) => {
   const [isMouseIn, setIsMouseIn] = useState(false);
   let dockerItemStyles: SerializedStyles = css`
-    ${isMouseIn ? `transform:scale(1.1)` : ``}
+    ${isMouseIn ? `transform:scale(1.1);` : ``}
     height:100%;
+    aspect-ratio:1;
+
+    img {
+      height: 100%;
+    }
   `;
   return (
     <div
@@ -27,8 +32,7 @@ const DockerItem: React.FunctionComponent<DockerItemProps> = (props) => {
         setIsMouseIn(false);
       }}
     >
-
-        <img src={props.url}></img>
+      <img src={props.url}></img>
     </div>
   );
 };
