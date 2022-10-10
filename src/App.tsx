@@ -7,7 +7,7 @@ const App = () => (
     <div id="navbar"></div>
     <div id="stage"></div>
     <div id="docker">
-      <Docker apps={[]} />
+      <Docker apps={[{name:"Safari",iconUrl:"https://cdn-icons-png.flaticon.com/512/6124/6124992.png"}]} />
     </div>
   </div>
 );

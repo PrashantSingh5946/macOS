@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { css, SerializedStyles } from "@emotion/react";
+import DockerItem from "./DockerItem";
 
 type App = {
-  name: String;
-  iconUrl: String;
+  name: string;
+  iconUrl: string;
 };
 
 type DockerProps = {
@@ -21,8 +22,10 @@ const Docker: React.FunctionComponent<DockerProps> = (props) => {
     border: 1px solid rgba(255, 255, 255, 0.18);
     width: 80vw;
     height: 100%;
+    padding:10px;
     transition: 0.2s;
     z-index: 1000;
+    box-sizing: border-box;
     ${isMouseIn ? `transform:scale(1.1)` : ``}
   `;
   return (
@@ -34,7 +37,11 @@ const Docker: React.FunctionComponent<DockerProps> = (props) => {
       onMouseLeave={() => {
         setIsMouseIn(false);
       }}
-    ></div>
+    >
+      {
+        props.apps.map(({name,iconUrl}) => <DockerItem name={name} url={iconUrl} ></DockerItem>)
+      }
+    </div>
   );
 };
 
