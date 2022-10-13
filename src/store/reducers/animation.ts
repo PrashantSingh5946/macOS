@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const animationSlice = createSlice({
     name: 'animation',
     initialState: {
-        areAnimationsEnabled: false,
+        areAnimationsEnabled: true,
     },
     reducers: {
         switchOn: (state) => { state.areAnimationsEnabled = true; },
