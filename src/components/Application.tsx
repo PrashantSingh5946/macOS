@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 const Application: React.FunctionComponent<any> = (props) => {
   let appStyles = css`
-    background: #fff;
+    background: #ffffffde;
     min-width: 200px;
     min-height: 100px;
     max-width: 400px;
@@ -10,6 +10,7 @@ const Application: React.FunctionComponent<any> = (props) => {
 
     margin: 50px;
     .control-bar {
+      background:#fff;
       display: flex;
       height: 15px;
       background: rgba(0, 0, 0, 0.25);
@@ -22,8 +23,8 @@ const Application: React.FunctionComponent<any> = (props) => {
     }
 
     .application-controls div {
-      height: 15px;
-      width: 15px;
+      height: 14px;
+      width: 14px;
       border-radius: 8px;
       background: #333;
       margin: 0px 2px;
@@ -31,14 +32,19 @@ const Application: React.FunctionComponent<any> = (props) => {
 
     .application-controls div.close {
       background: #f96057;
+      border: 0.5px solid #d91717;
     }
 
     .application-controls .minimize {
       background: #f8ce52;
+      border: 0.5px solid #cea017;
     }
 
     .application-controls .maximize {
       background: #5fcf65;
+      border: 0.5px solid #29b629;
+
+      
     }
   `;
   return (
