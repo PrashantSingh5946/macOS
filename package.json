@@ -14,7 +14,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "use-draggable-hook": "^1.1.0"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.10.2",

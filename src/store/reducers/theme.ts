@@ -6,9 +6,6 @@ enum theme {
     glow="glow"
 }
 
-
-
-
 export const themeSlice = createSlice({
     name: 'theme',
     initialState: {

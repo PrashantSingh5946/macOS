@@ -1,8 +1,11 @@
 import { css } from "@emotion/react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import useDraggable from 'use-draggable-hook'
 
 const Application: React.FunctionComponent<any> = (props) => {
+
+  const { target } = useDraggable<HTMLDivElement>()
 
   let styles = {
     light: css`
@@ -100,7 +103,7 @@ margin: 50px;
   }
   let theme = useSelector<RootState>(state => state.theme.currentTheme)
   return (
-    <div className="application-container" css={styles[theme]}>
+    <div className="application-container" css={styles[theme]} ref={target}>
       <div className="control-bar">
         <div className="application-controls">
           <div className="close"></div>
