@@ -12,7 +12,7 @@ enum theme {
 export const themeSlice = createSlice({
     name: 'theme',
     initialState: {
-        currentTheme: theme.light,
+        currentTheme: theme.dark,
     },
     reducers: {
         setDarkTheme: (state) => { state.currentTheme = theme.dark},
