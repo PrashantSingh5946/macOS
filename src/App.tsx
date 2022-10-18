@@ -5,6 +5,8 @@ import Application from "./components/Application";
 import Docker from "./components/Docker";
 import ToggleSwitch from "./components/ToggleSwitch";
 import { setDarkTheme, setLightTheme } from "./store/reducers/theme";
+import { switchOff,switchOn } from "./store/reducers/animation";
+
 
 const App = () => {
   let dispatch = useDispatch();
@@ -20,6 +22,14 @@ const App = () => {
           }}
           onTrue={() => {
             dispatch(setLightTheme());
+          }}
+        />
+                <ToggleSwitch
+          onFalse={() => {
+            dispatch(switchOff());
+          }}
+          onTrue={() => {
+            dispatch(switchOn());
           }}
         />
       </div>
