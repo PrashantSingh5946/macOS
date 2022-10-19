@@ -29,7 +29,7 @@ const ToggleSwitch = (props: ToggleSwitchProps) => {
     transition: 0.2s;
     z-index: 1000;
     box-sizing: border-box;
-    ${state ? `background:green;` : `background:white;`}
+    ${state ? `background:lightgreen;` : `background:white;`}
   `;
 
   return (
