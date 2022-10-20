@@ -1,6 +1,10 @@
 import { useDispatch } from "react-redux";
 import safariIcon from "./assets/Icons/Safari.png";
 import launchPadIcon from "./assets/Icons/Launchpad.png";
+import mailIcon from "./assets/Icons/Mail.png";
+import mapsIcon from "./assets/Icons/Maps.png";
+import photosIcon from "./assets/Icons/Photos.png";
+
 import "./App.css";
 import Application from "./components/Application";
 import Docker from "./components/Docker";
@@ -48,6 +52,18 @@ const App = () => {
             {
               name: "Safari",
               iconUrl: safariIcon,
+            },
+            {
+              name: "Mail",
+              iconUrl: mailIcon,
+            },
+            {
+              name: "Maps",
+              iconUrl: mapsIcon,
+            },
+            {
+              name: "Photos",
+              iconUrl: photosIcon,
             },
           ]}
         />

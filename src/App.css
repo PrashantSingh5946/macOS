@@ -26,13 +26,15 @@ body {
 
 #stage {
   width: 100vw;
+  height: inherit;
   height: -webkit-fill-available;
+
 }
 
 #docker {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-top: auto;
   padding: 10px 20px;
 }

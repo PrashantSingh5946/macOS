@@ -32,7 +32,7 @@ const DockerItem: React.FunctionComponent<DockerItemProps> = (props) => {
         setIsMouseIn(false);
       }}
     >
-      <img src={props.url}></img>
+      <img src={props.url.toString()}></img>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { css, SerializedStyles } from "@emotion/react";
 import DockerItem from "./DockerItem";
-import { useSelector } from "react-redux"
-import { RootState } from "../store/store"
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 type App = {
   name: string;
-  iconUrl: string;
+  iconUrl: URL;
 };
 
 type DockerProps = {
@@ -14,9 +14,10 @@ type DockerProps = {
 };
 
 const Docker: React.FunctionComponent<DockerProps> = (props) => {
-
   const [isMouseIn, setIsMouseIn] = useState(false);
-  let areAnimationsEnabled = useSelector<RootState>(store => store.animation.areAnimationsEnabled);
+  let areAnimationsEnabled = useSelector<RootState>(
+    (store) => store.animation.areAnimationsEnabled
+  );
   let dockerStyles: SerializedStyles = css`
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -24,13 +25,12 @@ const Docker: React.FunctionComponent<DockerProps> = (props) => {
     -webkit-backdrop-filter: blur(14.5px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    width: 80vw;
     height: 80px;
-    padding:10px;
+    padding: 10px;
     transition: 0.2s;
     z-index: 1000;
     box-sizing: border-box;
-    display:flex;
+    display: flex;
     ${isMouseIn && areAnimationsEnabled ? `transform:scale(1.1)` : ``}
   `;
   return (
@@ -43,9 +43,9 @@ const Docker: React.FunctionComponent<DockerProps> = (props) => {
         setIsMouseIn(false);
       }}
     >
-      {
-        props.apps.map(({ name, iconUrl }) => <DockerItem name={name} url={iconUrl} ></DockerItem>)
-      }
+      {props.apps.map(({ name, iconUrl }) => (
+        <DockerItem key={name} name={name} url={iconUrl}></DockerItem>
+      ))}
     </div>
   );
 };
