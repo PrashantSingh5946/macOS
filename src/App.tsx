@@ -3,7 +3,16 @@ import safariIcon from "./assets/Icons/Safari.png";
 import launchPadIcon from "./assets/Icons/Launchpad.png";
 import mailIcon from "./assets/Icons/Mail.png";
 import mapsIcon from "./assets/Icons/Maps.png";
+import facetimeIcon from "./assets/Icons/FaceTime.png";
+import calenderIcon from "./assets/Icons/Calendar.png";
+import addressBookIcon from "./assets/Icons/AddressBook.png";
+import notesIcon from "./assets/Icons/Notes.png";
+import remainderIcon from "./assets/Icons/Reminders.png";
 import photosIcon from "./assets/Icons/Photos.png";
+import appleTVIcon from "./assets/Icons/AppleTV.png";
+import iTunesIcon from "./assets/Icons/Music.png";
+import appStoreIcon from "./assets/Icons/AppStore.png";
+import settingsIcon from "./assets/Icons/SystemPreferences.png";
 
 import "./App.css";
 import Application from "./components/Application";
@@ -64,6 +73,42 @@ const App = () => {
             {
               name: "Photos",
               iconUrl: photosIcon,
+            },
+            {
+              name: "Facetime",
+              iconUrl: facetimeIcon,
+            },
+            {
+              name: "AddressBook",
+              iconUrl: addressBookIcon,
+            },
+            {
+              name: "Calendar",
+              iconUrl: calenderIcon,
+            },
+            {
+              name: "Notes",
+              iconUrl: notesIcon,
+            },
+            {
+              name: "Remainder",
+              iconUrl: remainderIcon,
+            },
+            {
+              name: "AppleTV",
+              iconUrl: appleTVIcon,
+            },
+            {
+              name: "Itunes",
+              iconUrl: iTunesIcon,
+            },
+            {
+              name: "AppStore",
+              iconUrl: appStoreIcon,
+            },
+            {
+              name: "Settings",
+              iconUrl: settingsIcon,
             },
           ]}
         />

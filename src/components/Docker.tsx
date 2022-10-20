@@ -6,7 +6,7 @@ import { RootState } from "../store/store";
 
 type App = {
   name: string;
-  iconUrl: URL;
+  iconUrl: URL|string;
 };
 
 type DockerProps = {
