@@ -13,6 +13,10 @@ import appleTVIcon from "./assets/Icons/AppleTV.png";
 import iTunesIcon from "./assets/Icons/Music.png";
 import appStoreIcon from "./assets/Icons/AppStore.png";
 import settingsIcon from "./assets/Icons/SystemPreferences.png";
+import booksIcon from "./assets/Icons/Books.png";
+import messagesIcon from "./assets/Icons/Messages.png";
+import podcastsIcon from "./assets/Icons/ApplePodcasts.png";
+import trashIcon from "./assets/Icons/Trash.png";
 
 import "./App.css";
 import Application from "./components/Application";
@@ -109,6 +113,22 @@ const App = () => {
             {
               name: "Settings",
               iconUrl: settingsIcon,
+            },
+            {
+              name: "Books",
+              iconUrl: booksIcon,
+            },
+            {
+              name: "Messages",
+              iconUrl: messagesIcon,
+            },
+            {
+              name: "Podcasts",
+              iconUrl: podcastsIcon,
+            },
+            {
+              name: "Trash",
+              iconUrl: trashIcon,
             },
           ]}
         />
