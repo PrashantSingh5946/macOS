@@ -7,7 +7,7 @@ type App = {
 };
 
 type DockerItemProps = {
-  url: string;
+  url: URL;
   name: string;
 };
 

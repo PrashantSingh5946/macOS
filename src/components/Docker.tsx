@@ -30,6 +30,7 @@ const Docker: React.FunctionComponent<DockerProps> = (props) => {
     transition: 0.2s;
     z-index: 1000;
     box-sizing: border-box;
+    display:flex;
     ${isMouseIn && areAnimationsEnabled ? `transform:scale(1.1)` : ``}
   `;
   return (

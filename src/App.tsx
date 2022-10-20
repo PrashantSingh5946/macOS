@@ -1,12 +1,12 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
+import safariIcon from "./assets/Icons/Safari.png";
+import launchPadIcon from "./assets/Icons/Launchpad.png";
 import "./App.css";
 import Application from "./components/Application";
 import Docker from "./components/Docker";
 import ToggleSwitch from "./components/ToggleSwitch";
 import { setDarkTheme, setLightTheme } from "./store/reducers/theme";
-import { switchOff,switchOn } from "./store/reducers/animation";
-
+import { switchOff, switchOn } from "./store/reducers/animation";
 
 const App = () => {
   let dispatch = useDispatch();
@@ -24,7 +24,7 @@ const App = () => {
             dispatch(setLightTheme());
           }}
         />
-                <ToggleSwitch
+        <ToggleSwitch
           onFalse={() => {
             dispatch(switchOff());
           }}
@@ -37,9 +37,17 @@ const App = () => {
         <Docker
           apps={[
             {
-              name: "Safari",
+              name: "Finder",
               iconUrl:
-                "https://cdn-icons-png.flaticon.com/512/6124/6124992.png",
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Finder_Icon_macOS_Big_Sur.png/240px-Finder_Icon_macOS_Big_Sur.png",
+            },
+            {
+              name: "Launchpad",
+              iconUrl: launchPadIcon,
+            },
+            {
+              name: "Safari",
+              iconUrl: safariIcon,
             },
           ]}
         />
