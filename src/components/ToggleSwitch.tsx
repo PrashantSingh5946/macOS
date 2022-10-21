@@ -22,23 +22,34 @@ const ToggleSwitch = (props: ToggleSwitchProps) => {
     backdrop-filter: blur(14.5px);
     -webkit-backdrop-filter: blur(14.5px);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid #bbb;
     width: 20px;
     height: 20px;
     padding: 1px;
     transition: 0.2s;
     z-index: 1000;
     box-sizing: border-box;
-    ${state ? `background:lightgreen;` : `background:white;`}
+    ${state ? `background:#4BD865;` : `background:#bbb;`}
+    ${state ? `margin-left: auto;` : ``}
+  `;
+
+  let containerStyles = css`
+    padding: 5px;
+    width: 50px;
+    background: #e8e8e8;
+    margin: 2px;
+    border-radius: 30px;
   `;
 
   return (
     <div
-      css={stylesOn}
+      css={containerStyles}
       onClick={() => {
         setState((state) => !state);
       }}
-    ></div>
+    >
+      <div css={stylesOn}></div>
+    </div>
   );
 };
 
