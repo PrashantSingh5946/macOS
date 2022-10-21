@@ -57,6 +57,7 @@ const Application: React.FunctionComponent<any> = (props) => {
       min-height: 100px;
       max-width: 400px;
       border-radius: 5px;
+      overflow:hidden;
 
       margin: 50px;
       .control-bar {
@@ -98,7 +99,7 @@ const Application: React.FunctionComponent<any> = (props) => {
   };
   let theme = useSelector<RootState>((state) => state.theme.currentTheme);
   return (
-    <div className="application-container" css={styles[theme]} ref={target}>
+    <div className="application-container" css={theme==="light"?"light":"dark"} ref={target}>
       <div className="control-bar">
         <div className="application-controls">
           <div className="close"></div>
@@ -107,7 +108,9 @@ const Application: React.FunctionComponent<any> = (props) => {
         </div>
       </div>
 
-      <div className="content"></div>
+      <div className="content">
+        <iframe src="https://www.spotify.com"></iframe>
+      </div>
     </div>
   );
 };

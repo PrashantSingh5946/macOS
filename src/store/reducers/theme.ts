@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-enum theme {
+export enum themes {
     dark="dark",
     light="light",
     glow="glow"
@@ -9,14 +9,14 @@ enum theme {
 export const themeSlice = createSlice({
     name: 'theme',
     initialState: {
-        currentTheme: theme.dark,
+        currentTheme: themes.dark,
     },
     reducers: {
-        setDarkTheme: (state) => { state.currentTheme = theme.dark},
-        setLightTheme: (state) => { state.currentTheme = theme.light},
+        setDarkTheme: (state) => { state.currentTheme = themes.dark},
+        setLightTheme: (state) => { state.currentTheme = themes.light},
     },
 })
 
-export const { setDarkTheme, setLightTheme } = themeSlice.actions
+export const { setDarkTheme, setLightTheme } = themeSlice.actions;
 
-export default themeSlice.reducer
+export default themeSlice.reducer;

@@ -52,7 +52,7 @@ const Docker: React.FunctionComponent<DockerProps> = (props) => {
       }}
     >
       {props.apps.map(({ name, iconUrl }) => (
-        <DockerItem key={name} name={name} url={iconUrl}></DockerItem>
+        <DockerItem key={name} name={name} url={new URL(iconUrl)}></DockerItem>
       ))}
     </div>
   );
