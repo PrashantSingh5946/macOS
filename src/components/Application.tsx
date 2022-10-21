@@ -29,8 +29,8 @@ const Application: React.FunctionComponent<any> = (props) => {
       }
 
       .application-controls div {
-        height: 14px;
-        width: 14px;
+        height: 10px;
+        width: 10px;
         border-radius: 8px;
         background: #333;
         margin: 0px 2px;
@@ -74,8 +74,8 @@ const Application: React.FunctionComponent<any> = (props) => {
       }
 
       .application-controls div {
-        height: 14px;
-        width: 14px;
+        height: 10px;
+        width: 10px;
         border-radius: 8px;
         background: #333;
         margin: 0px 2px;
