@@ -26,7 +26,7 @@ const ToggleSwitch = (props: ToggleSwitchProps) => {
     width: 20px;
     height: 20px;
     padding: 1px;
-    transition: 0.2s;
+    transition: 0.5s;
     z-index: 1000;
     box-sizing: border-box;
     ${state ? `background:#4BD865;` : `background:#bbb;`}
@@ -36,7 +36,7 @@ const ToggleSwitch = (props: ToggleSwitchProps) => {
   let containerStyles = css`
     padding: 5px;
     width: 50px;
-    background: #e8e8e8;
+    background: #fff;
     margin: 2px;
     border-radius: 30px;
   `;
