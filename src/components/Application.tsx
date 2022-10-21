@@ -13,7 +13,7 @@ const Application: React.FunctionComponent<any> = (props) => {
       min-height: 100px;
       max-width: 400px;
       border-radius: 5px;
-      overflow:hidden;
+      overflow: hidden;
 
       margin: 50px;
       .control-bar {
@@ -57,7 +57,7 @@ const Application: React.FunctionComponent<any> = (props) => {
       min-height: 100px;
       max-width: 400px;
       border-radius: 5px;
-      overflow:hidden;
+      overflow: hidden;
 
       margin: 50px;
       .control-bar {
@@ -99,7 +99,11 @@ const Application: React.FunctionComponent<any> = (props) => {
   };
   let theme = useSelector<RootState>((state) => state.theme.currentTheme);
   return (
-    <div className="application-container" css={theme==="light"?"light":"dark"} ref={target}>
+    <div
+      className="application-container"
+      css={theme === "light" ? styles.light : styles.dark}
+      ref={target}
+    >
       <div className="control-bar">
         <div className="application-controls">
           <div className="close"></div>
@@ -108,8 +112,16 @@ const Application: React.FunctionComponent<any> = (props) => {
         </div>
       </div>
 
-      <div className="content">
-        <iframe src="https://www.spotify.com"></iframe>
+      <div className="content" style={{ height: "333px" }}>
+        <iframe
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1DWTwbZHrJRIgD?utm_source=generator"
+          height="100%"
+          width={"100%"}
+          frameBorder="0"
+          allowFullScreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
       </div>
     </div>
   );
