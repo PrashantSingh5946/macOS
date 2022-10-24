@@ -8,16 +8,16 @@ const Application: React.FunctionComponent<any> = (props) => {
 
   let styles = {
     light: css`
-      background: #fff;
       min-width: 200px;
       min-height: 100px;
       max-width: 400px;
       border-radius: 5px;
       overflow: hidden;
+      background: #bbbbbb91;
 
       margin: 50px;
       .control-bar {
-        background: #bbb;
+        
         display: flex;
         height: 15px;
         padding: 2.5px;
@@ -32,7 +32,6 @@ const Application: React.FunctionComponent<any> = (props) => {
         height: 10px;
         width: 10px;
         border-radius: 8px;
-        background: #333;
         margin: 0px 2px;
       }
 
