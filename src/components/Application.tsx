@@ -5,104 +5,65 @@ import useDraggable from "use-draggable-hook";
 
 const Application: React.FunctionComponent<any> = (props) => {
   const { target } = useDraggable<HTMLDivElement>();
-
-  let styles = {
-    light: css`
-      min-width: 200px;
-      min-height: 100px;
-      max-width: 400px;
-      border-radius: 5px;
-      overflow: hidden;
-      background: #bbbbbb91;
-
-      margin: 50px;
-      .control-bar {
-        
-        display: flex;
-        height: 15px;
-        padding: 2.5px;
-      }
-
-      .application-controls {
-        display: flex;
-        align-items: center;
-      }
-
-      .application-controls div {
-        height: 10px;
-        width: 10px;
-        border-radius: 8px;
-        margin: 0px 2px;
-      }
-
-      .application-controls div.close {
-        background: #f96057;
-        border: 0.5px solid #d91717;
-      }
-
-      .application-controls .minimize {
-        background: #f8ce52;
-        border: 0.5px solid #cea017;
-      }
-
-      .application-controls .maximize {
-        background: #5fcf65;
-        border: 0.5px solid #29b629;
-      }
-    `,
-    dark: css`
-      background: rgba(0, 0, 0, 0.15);
-      min-width: 200px;
-      min-height: 100px;
-      max-width: 400px;
-      border-radius: 5px;
-      overflow: hidden;
-
-      margin: 50px;
-      .control-bar {
-        background: #fff;
-        display: flex;
-        height: 15px;
-        background: rgba(0, 0, 0, 0.25);
-        padding: 2.5px;
-      }
-
-      .application-controls {
-        display: flex;
-        align-items: center;
-      }
-
-      .application-controls div {
-        height: 10px;
-        width: 10px;
-        border-radius: 8px;
-        background: #333;
-        margin: 0px 2px;
-      }
-
-      .application-controls div.close {
-        background: #f96057;
-        border: 0.5px solid #d91717;
-      }
-
-      .application-controls .minimize {
-        background: #f8ce52;
-        border: 0.5px solid #cea017;
-      }
-
-      .application-controls .maximize {
-        background: #5fcf65;
-        border: 0.5px solid #29b629;
-      }
-    `,
-  };
   let theme = useSelector<RootState>((state) => state.theme.currentTheme);
+  let styles = css`
+    min-width: 200px;
+    min-height: 100px;
+    max-width: 400px;
+    border-radius: 5px;
+    overflow: hidden;
+    ${theme === "light"
+      ? `background: #bbbbbb91;`
+      : `background:rgba(0,0,0,0.25);`}
+
+    margin: 50px;
+    .control-bar {
+      display: flex;
+      height: 15px;
+      padding: 2.5px;
+    }
+
+    .application-controls {
+      display: flex;
+      align-items: center;
+    }
+
+    .application-controls div {
+      height: 10px;
+      width: 10px;
+      border-radius: 8px;
+      margin: 0px 2px;
+    }
+
+    .application-controls div.close {
+      background: #f96057;
+      border: 0.5px solid #d91717;
+    }
+
+    .application-controls .minimize {
+      background: #f8ce52;
+      border: 0.5px solid #cea017;
+    }
+
+    .application-controls .maximize {
+      background: #5fcf65;
+      border: 0.5px solid #29b629;
+    }
+
+    .application-controls .close:hover {
+      background: #d91717;
+    }
+
+    .application-controls .minimize:hover {
+      background: #cea017;
+    }
+
+    .application-controls .maximize:hover {
+      background: #29b629;
+    }
+  `;
   return (
-    <div
-      className="application-container"
-      css={theme === "light" ? styles.light : styles.dark}
-      ref={target}
-    >
+    <div className="application-container" css={styles} ref={target}>
       <div className="control-bar">
         <div className="application-controls">
           <div className="close"></div>
