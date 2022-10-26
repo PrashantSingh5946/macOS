@@ -24,13 +24,16 @@ import Docker from "./components/Docker";
 import ToggleSwitch from "./components/ToggleSwitch";
 import { setDarkTheme, setLightTheme } from "./store/reducers/theme";
 import { switchOff, switchOn } from "./store/reducers/animation";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   let dispatch = useDispatch();
 
   return (
     <div className="App">
-      <div id="navbar"></div>
+      <div id="navbar">
+        <Navbar/>
+      </div>
       <div id="stage">
         <Application />
         <ToggleSwitch
