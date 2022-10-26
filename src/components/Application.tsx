@@ -10,8 +10,11 @@ const Application: React.FunctionComponent<any> = (props) => {
     min-width: 200px;
     min-height: 100px;
     max-width: 400px;
-    border-radius: 5px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
     overflow: hidden;
+    box-shadow: 0px 8.5px 10px rgb(0 0 0 / 28%), 0px 68px 80px rgb(0 0 0 / 56%);
     ${theme === "light"
       ? `background: #bbbbbb91;`
       : `background:rgba(0,0,0,0.25);`}
@@ -19,8 +22,8 @@ const Application: React.FunctionComponent<any> = (props) => {
     margin: 50px;
     .control-bar {
       display: flex;
-      height: 15px;
-      padding: 2.5px;
+      height: 16px;
+      padding: 8px;
     }
 
     .application-controls {
@@ -29,10 +32,10 @@ const Application: React.FunctionComponent<any> = (props) => {
     }
 
     .application-controls div {
-      height: 10px;
-      width: 10px;
+      height: 12px;
+      width: 12px;
       border-radius: 8px;
-      margin: 0px 2px;
+      margin: 0px 3px;
     }
 
     .application-controls div.close {
