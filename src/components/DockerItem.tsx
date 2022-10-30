@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { css, SerializedStyles } from "@emotion/react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 type App = {
   name: String;
@@ -13,8 +15,11 @@ type DockerItemProps = {
 
 const DockerItem: React.FunctionComponent<DockerItemProps> = (props) => {
   const [isMouseIn, setIsMouseIn] = useState(false);
+  let areAnimationsEnabled = useSelector<RootState>(
+    (store) => store.animation.areAnimationsEnabled
+  );
   let dockerItemStyles: SerializedStyles = css`
-    ${isMouseIn ? `transform:scale(1.1);` : ``}
+    ${isMouseIn && areAnimationsEnabled? `transform:scale(1.1);` : ``}
     height:100%;
     aspect-ratio:1;
 
