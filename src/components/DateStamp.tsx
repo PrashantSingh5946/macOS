@@ -9,7 +9,7 @@ const DateStamp = () =>
         setDate(date);
         let identifier = setInterval(()=>{
             setDate(new Date());
-        },1000);
+        },500);
 
         return ()=>{
             clearInterval(identifier);
