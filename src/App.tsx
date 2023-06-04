@@ -20,7 +20,7 @@ import trashIcon from "./assets/Icons/Trash.png";
 
 import "./App.css";
 import Application from "./components/Application";
-import Docker from "./components/Docker";
+import Docker from "./components/Dock";
 import ToggleSwitch from "./components/ToggleSwitch";
 import { setDarkTheme, setLightTheme } from "./store/reducers/theme";
 import { switchOff, switchOn } from "./store/reducers/animation";
