@@ -23,6 +23,9 @@ var generateRandomString = function (length) {
 
 const clients = new Set();
 
+//Serve the main site
+app.use(express.static("dist"));
+
 //Login handler
 app.get("/auth/login", (req, res) => {
   var scope =
@@ -85,11 +88,7 @@ app.get("/auth/callback", (req, res) => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.send("Yeah!!");
-});
-
-const server = app.listen(8000, () => {
+const server = app.listen(process.env.PORT || 8000, () => {
   console.log("Server running");
 });
 
