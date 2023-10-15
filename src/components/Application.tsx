@@ -358,11 +358,11 @@ const Application: React.FunctionComponent<any> = (props) => {
                     position: relative;
                   `}
                 >
-                  {current_track.name
-                    .split(/[-:_(]/)[0]
+                  {current_track?.name
+                    ?.split(/[-:_(]/)[0]
                     .trim()
                     .substring(0, 15) +
-                    (current_track.name.length > 15 ? "..." : "")}
+                    (current_track?.name?.length > 15 ? "..." : "")}
                 </span>
 
                 <img
