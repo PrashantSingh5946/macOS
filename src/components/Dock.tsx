@@ -1,4 +1,12 @@
-import React, { MutableRefObject, Ref, RefObject, createRef, useEffect, useRef, useState } from "react";
+import React, {
+  MutableRefObject,
+  Ref,
+  RefObject,
+  createRef,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { css, SerializedStyles } from "@emotion/react";
 import DockItem from "./DockItem";
 import { useSelector } from "react-redux";
@@ -14,9 +22,9 @@ type DockProps = {
 };
 
 const Docker: React.FunctionComponent<DockProps> = (props) => {
-
-  const dockItemsRefs: MutableRefObject<RefObject<HTMLDivElement>[]> = useRef<RefObject<HTMLDivElement>[]>([]);
-
+  const dockItemsRefs: MutableRefObject<RefObject<HTMLDivElement>[]> = useRef<
+    RefObject<HTMLDivElement>[]
+  >([]);
 
   const areAnimationsEnabled = useSelector<RootState>(
     (store) => store.animation.areAnimationsEnabled
@@ -46,7 +54,6 @@ const Docker: React.FunctionComponent<DockProps> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-
     const handleMouseMove = (e: MouseEvent) => {
       const containerRect = containerRef.current!.getBoundingClientRect();
       const x = e.clientX - containerRect.left;
@@ -56,8 +63,7 @@ const Docker: React.FunctionComponent<DockProps> = (props) => {
       const mouseY = e.clientY;
 
       if (areAnimationsEnabled) {
-        dockItemsRefs.current.forEach(dockItemRef => {
-
+        dockItemsRefs.current.forEach((dockItemRef) => {
           let dockItem = dockItemRef.current;
           if (dockItem != null) {
             let { left, right } = dockItem!.getBoundingClientRect();
@@ -67,54 +73,49 @@ const Docker: React.FunctionComponent<DockProps> = (props) => {
 
             let width = right - left;
 
-            //let zoom be maximum within half the width 
-            let coefficient = Math.pow(0.5, (distance / (width)) * 0.5)
+            //let zoom be maximum within half the width
+            let coefficient = Math.pow(0.5, (distance / width) * 0.8);
             let scale = 1 + coefficient;
             dockItem!.style.height = 75 * scale + "px";
           }
-
         });
       }
-
-
     };
 
     const handleMouseLeave = (e: MouseEvent) => {
       //reset the heights
-      dockItemsRefs.current.forEach(dockItemRef => {
+      dockItemsRefs.current.forEach((dockItemRef) => {
         let dockItem = dockItemRef.current;
         if (dockItem != null) {
           dockItem!.style.height = 75 + "px";
         }
-
-      })
+      });
     };
 
     const containerElement = containerRef.current;
 
-
-
-    containerElement!.addEventListener('mousemove', handleMouseMove);
-    containerElement!.addEventListener('mouseleave', handleMouseLeave);
+    containerElement!.addEventListener("mousemove", handleMouseMove);
+    containerElement!.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      containerElement!.removeEventListener('mousemove', handleMouseMove);
-      containerElement!.removeEventListener('mouseleave', handleMouseLeave);
-
+      containerElement!.removeEventListener("mousemove", handleMouseMove);
+      containerElement!.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [areAnimationsEnabled]);
 
-
-
   return (
-    <div
-      css={dockerStyles}
-      ref={containerRef}
-    >
+    <div css={dockerStyles} ref={containerRef}>
       {props.apps.map(({ name, iconUrl }) => {
         let childRef = React.createRef<HTMLDivElement>();
         dockItemsRefs.current.push(childRef);
-        return <DockItem key={name} name={name} ref={childRef} url={iconUrl}></DockItem>
+        return (
+          <DockItem
+            key={name}
+            name={name}
+            ref={childRef}
+            url={iconUrl}
+          ></DockItem>
+        );
       })}
     </div>
   );
