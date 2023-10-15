@@ -13,4 +13,7 @@ npm i -g vite
 vite build --force
 
 #Move the vite bundled files to server
- mv dist server/
+
+rm -rf server/dist
+
+mv dist server/

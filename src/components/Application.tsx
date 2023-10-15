@@ -3,6 +3,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import useDraggable from "use-draggable-hook";
 import { useEffect, useRef, useState } from "react";
+import socket from "../lib/socket.js";
+
+//Images
+import spotify_logo from "../assets/spotify-32.png";
 
 const Application: React.FunctionComponent<any> = (props) => {
   // const track = {
@@ -20,6 +24,9 @@ const Application: React.FunctionComponent<any> = (props) => {
   const [is_paused, setPaused] = useState(false);
   const [is_active, setActive] = useState(false);
   const [current_track, setTrack] = useState();
+
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [fooEvents, setFooEvents] = useState([]);
 
   const toggleRef = useRef();
   const player = useRef(null);
@@ -87,24 +94,123 @@ const Application: React.FunctionComponent<any> = (props) => {
     }
   `;
 
+  // useEffect(() => {
+  //   let socket = new WebSocket(
+  //     window.location.protocol == "http:"
+  //       ? "ws://" + window.location.host
+  //       : "wss://" + window.location.host
+  //   );
+
+  //   socket.onopen = (sock) => {
+  //     console.log("WebSocket connection established");
+
+  //     setInterval(() => {
+  //       if (socket.readyState == socket.OPEN) {
+  //         socket.send('{ "ping" : "1" }');
+  //         console.log("Pinging");
+  //       } else {
+  //       }
+  //     }, 5000);
+  //   };
+
+  //   socket.onerror = (err) => {
+  //     socket.close();
+  //     setTimeout(() => {
+  //       console.log("Reconnecting the socket");
+  //     }, 5000);
+  //   };
+
+  //   socket.onmessage = (event) => {
+  //     console.log("Received message:", event.data);
+
+  //     if (JSON.parse(event.data) && JSON.parse(event.data)["token"]) {
+  //       localStorage.setItem("token", JSON.parse(event.data)["token"]);
+  //     }
+
+  //     if (localStorage.getItem("token")) {
+  //       const script = document.createElement("script");
+  //       script.src = "https://sdk.scdn.co/spotify-player.js";
+  //       //script.async = true;
+
+  //       document.body.appendChild(script);
+
+  //       window.onSpotifyWebPlaybackSDKReady = () => {
+  //         if (!player.current) {
+  //           player.current = new window.Spotify.Player({
+  //             name: "Spotify for React",
+  //             getOAuthToken: (cb) => {
+  //               cb(localStorage.getItem("token"));
+  //             },
+  //             volume: 0.5,
+  //           });
+
+  //           player.current.addListener("ready", ({ device_id }) => {
+  //             console.log("Ready with Device ID", device_id);
+  //           });
+
+  //           player.current.addListener("not_ready", ({ device_id }) => {
+  //             console.log("Device ID has gone offline", device_id);
+  //           });
+
+  //           player.current.addListener("player_state_changed", (state) => {
+  //             if (!state) {
+  //               return;
+  //             }
+
+  //             console.log(state);
+
+  //             setTrack({
+  //               ...state.track_window.current_track,
+  //               position: state.position,
+  //               duration: state.duration,
+  //             });
+  //             setPaused(state.paused);
+
+  //             player.current.getCurrentState().then((state) => {
+  //               !state ? setActive(false) : setActive(true);
+  //             });
+  //           });
+
+  //           player.current.connect();
+  //         }
+  //       };
+  //     }
+
+  //     // Process the message as needed
+  //   };
+
+  //   socket.onclose = () => {
+  //     console.log("WebSocket connection closed");
+  //   };
+
+  //   return () => {
+  //     if (socket.readyState === 1) {
+  //       // <-- This is important
+  //       socket.close();
+  //     } else {
+  //       console.log(socket);
+  //     }
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const socket = new WebSocket(
-      window.location.protocol == "http:"
-        ? "ws://" + window.location.host
-        : "wss://" + window.location.host
-    );
+    function onConnect() {
+      setIsConnected(true);
+    }
 
-    socket.onopen = () => {
-      console.log("WebSocket connection established");
-    };
+    function onDisconnect() {
+      setIsConnected(false);
+    }
 
-    socket.onerror = (err) => console.log(err);
+    function onFooEvent(value) {
+      setFooEvents((previous) => [...previous, value]);
+    }
 
-    socket.onmessage = (event) => {
-      console.log("Received message:", event.data);
+    function onMessage(message: any) {
+      console.log(message);
 
-      if (JSON.parse(event.data) && JSON.parse(event.data)["token"]) {
-        localStorage.setItem("token", JSON.parse(event.data)["token"]);
+      if (message["token"]) {
+        localStorage.setItem("token", message["token"]);
       }
 
       if (localStorage.getItem("token")) {
@@ -155,21 +261,18 @@ const Application: React.FunctionComponent<any> = (props) => {
           }
         };
       }
+    }
 
-      // Process the message as needed
-    };
-
-    socket.onclose = () => {
-      console.log("WebSocket connection closed");
-    };
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+    socket.on("foo", onFooEvent);
+    socket.on("message", onMessage);
 
     return () => {
-      if (socket.readyState === 1) {
-        // <-- This is important
-        socket.close();
-      } else {
-        console.log(socket);
-      }
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+      socket.off("foo", onFooEvent);
+      socket.off("message", onMessage);
     };
   }, []);
 
@@ -228,7 +331,7 @@ const Application: React.FunctionComponent<any> = (props) => {
               <div
                 className="widget"
                 css={css`
-                  background: url(${current_track.album.images[0].url});
+                  background: url(${current_track?.album?.images[0]?.url});
                   display: cover;
                   height: 100%;
                   width: 100%;
@@ -263,7 +366,7 @@ const Application: React.FunctionComponent<any> = (props) => {
                 </span>
 
                 <img
-                  src="/src/assets/spotify-32.png"
+                  src={spotify_logo}
                   css={css`
                     position: absolute;
                     top: 15px;
@@ -428,7 +531,11 @@ const Application: React.FunctionComponent<any> = (props) => {
           ) : (
             <button
               onClick={() => {
-                window.open("http://localhost:8000/auth/login");
+                let url = window.open(
+                  window.location.protocol == "http:"
+                    ? "http://" + window.location.host + "/auth/login"
+                    : "https://" + window.location.host + "/auth/login"
+                );
               }}
               css={css`
                 display: inline-block;

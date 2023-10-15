@@ -4,12 +4,20 @@ const WebSocket = require("ws");
 require("dotenv").config();
 
 const app = express();
+const http = require("http").Server(app);
 
-//
+const socketIO = require("socket.io")(http);
+
+socketIO.on("connection", (socket) => {
+  console.log(`⚡: ${socket.id} user just connected!`);
+  socket.on("disconnect", () => {
+    console.log("🔥: A user disconnected");
+  });
+});
+
 var spotify_client_id = process.env.SPOTIFY_API_CLIENT;
 var spotify_client_secret = process.env.SPOTIFY_API_SECRET;
 
-//
 var generateRandomString = function (length) {
   var text = "";
   var possible =
@@ -20,8 +28,6 @@ var generateRandomString = function (length) {
   }
   return text;
 };
-
-const clients = new Set();
 
 //Serve the main site
 app.use(express.static("dist"));
@@ -78,7 +84,9 @@ app.get("/auth/callback", (req, res) => {
       var access_token = body.access_token;
       console.log(body);
       //Send the token
-      sendToAllClients(JSON.stringify({ token: access_token }));
+
+      socketIO.emit("message", { token: access_token });
+
       res.send(
         "<html><body><script> (()=>{window.close()})()</script></body></html>"
       );
@@ -88,29 +96,7 @@ app.get("/auth/callback", (req, res) => {
   });
 });
 
-const server = app.listen(process.env.PORT || 8000, () => {
+//HTTP server
+http.listen(process.env.PORT || 8000, () => {
   console.log("Server running");
 });
-
-const wss = new WebSocket.Server({ server });
-
-wss.on("connection", (ws) => {
-  console.log("New WebSocket connection");
-
-  clients.add(ws);
-
-  ws.on("message", (message) => {
-    console.log("Received message:", message);
-    // Process the message as needed
-  });
-
-  ws.on("close", () => {
-    console.log("WebSocket connection closed");
-  });
-});
-
-const sendToAllClients = (message) => {
-  clients.forEach((client) => {
-    client.send(message);
-  });
-};
